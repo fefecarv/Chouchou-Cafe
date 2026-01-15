@@ -31,4 +31,5 @@ Este projeto está sendo construído com a seguinte stack:
 * **Outros:** `Em Construção`
 
 ## 🗂 Estrutura do Banco de Dados 
-<img width="1128" height="385" alt="image" src="https://github.com/user-attachments/assets/392966a6-7410-4864-9c5b-24e254bf41f8" />
+<img width="892" height="319" alt="image" src="https://github.com/user-attachments/assets/af04dc20-6139-4a16-a554-38c083402b07" />
+
