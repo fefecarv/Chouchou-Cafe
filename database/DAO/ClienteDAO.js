@@ -1,6 +1,6 @@
 const db = require("../mysql");
 
-class ClienteDAO{
+export class ClienteDAO{
     constructor(){}
     async buscarTudo(){
         const sql = "SELECT * FROM cliente";
@@ -14,6 +14,14 @@ class ClienteDAO{
         const sql = "SELECT * FROM cliente WHERE codigo = ?";
     
         const [resultado] = await db.query(sql, [codigo]);
+    
+        return resultado;
+    }
+
+    async buscarEmail(email){
+        const sql = "SELECT * FROM cliente WHERE email = ?";
+    
+        const [resultado] = await db.query(sql, [email]);
     
         return resultado;
     }

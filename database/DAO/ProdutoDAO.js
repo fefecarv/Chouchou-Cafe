@@ -1,6 +1,6 @@
 const db = require("../mysql");
 
-class ProdutoDAO{
+export class ProdutoDAO{
     constructor(){}
     async buscarTudo(){ // async: espera cada linha rodar e depois roda - assincrono
         const sql = "select * from Produto";

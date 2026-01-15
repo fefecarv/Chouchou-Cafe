@@ -9,7 +9,7 @@
 
 const db = require("../mysql");
 
-class PedidoDAO{
+export class PedidoDAO{
     constructor(){}
     async buscarTudo(){ // async: espera cada linha rodar e depois roda - assincrono
         const sql = "select * from Pedido";
