@@ -1,4 +1,5 @@
-import { ClienteDAO } from "../database/DAO/ClienteDAO";
+import { ClienteDAO } from "../database/DAO/ClienteDAO.js";
+import { Cliente } from "../model/Cliente.js";
 
 export class ClienteController
 {
@@ -148,7 +149,7 @@ export class ClienteController
             // Regra de Negócio: A senha inicial é gerada automaticamente baseada no CPF.
             const senhaTemporaria = cpf.replace(/\D/g, '').substring(0, 5);
         
-            const novoCliente = new ClienteModel(cpf, nome, email, endereco, cep);
+            const novoCliente = new Cliente(cpf, nome, senhaTemporaria, email, endereco, cep);
             
             await dao.criar(novoCliente);
 
@@ -190,7 +191,7 @@ async atualizar (req, res)
         const codigoUrl = req.params.codigo;
         const { nome, email, endereco, cep} = req.body;
 
-        const clienteAtualizado = new ClienteModel( codigoUrl, nome, email, endereco, cep);
+        const clienteAtualizado = new Cliente( codigoUrl, nome, email, endereco, cep);
 
         const sucesso = await dao.atualizar(clienteAtualizado);
 

@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { router } from './routes.js';
+import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Configuração das variáveis de ambiente
