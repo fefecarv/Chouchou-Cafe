@@ -7,8 +7,7 @@
      * @param {string} c cep
 */
 
-const db = require("../mysql");
-
+import db from '../mysql.js'
 export class PedidoDAO{
     constructor(){}
     async buscarTudo(){ // async: espera cada linha rodar e depois roda - assincrono
@@ -27,11 +26,11 @@ export class PedidoDAO{
         return resultado;
     }
 
-    async criar(codigoProduto, codigoCliente, status, cep){
-        const sql = "insert into Produto(codigoProduto, codigoCliente, status, cep) values(?, ?, ?, ?)";
+    async criar(pedido){
+        const sql = "insert into Pedido(codigoCliente, codigoProduto, status, cep) values(?, ?, ?, ?)";
     
-        const [resultado] = await db.query(sql, [codigoProduto, codigoCliente, status, cep]);
-    
+        const [resultado] = await db.query(sql, [pedido.getClienteCodigo(), pedido.getProdutoCodigo(), pedido.getStatus(), pedido.getCep()]);
+        
         return resultado;
     } 
 
@@ -62,5 +61,4 @@ export class PedidoDAO{
  * banco é superior a um segundo e a atribuição do valor à variável é imediato, o que faria com que o 
  * js atribuísse 'undefined' e não o dado do banco de dados.
  */
-
 

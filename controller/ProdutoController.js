@@ -34,7 +34,7 @@ export class ProdutoController
      * 
      * Método GET: /produto/:codigo
      */ 
-    async buscarProduto (req, res)
+    async buscarCodigo (req, res)
     {
         const dao = new ProdutoDAO();
 
@@ -91,14 +91,14 @@ export class ProdutoController
 
 
 /**
- * Atualiza dados do pedido.
+ * Atualiza dados do produto.
  * 
- * Método PUT: /pedidos/:codigoProduto/:codigoCliente
+ * Método PUT: /produtos/:codigoProduto/:codigoCliente
  */
 
 async atualizar (req, res)
 {
-    const dao = new PedidoDAO();
+    const dao = new ProdutoDAO();
 
     try 
     {
@@ -106,9 +106,16 @@ async atualizar (req, res)
         
         const { nome, preco, fotolink, descricao, categoria, unidade } = req.body;
 
-        const produtoAtualizado = new Pedido( nome, preco, fotolink, descricao, categoria, unidade);
+        const ProdutoAntigo = await dao.buscarCodigo(codigoUrl);
+                
+        if(ProdutoAntigo.length<1)
+        {
+        return res.status(404).json({ mensagem: "Produto não encontrado para atualização." });
+        }
+        
+        const produtoAtualizado = new Produto(nome || ProdutoAntigo[0].nome, preco || ProdutoAntigo[0].preco, fotolink || ProdutoAntigo[0].fotoLink, descricao || ProdutoAntigo[0].descricao, categoria || ProdutoAntigo[0].categoria, unidade || ProdutoAntigo[0].unidade);
 
-        const sucesso = await dao.atualizar(produtoAtualizado);
+        const sucesso = await dao.update(codigoUrl, produtoAtualizado);
 
         if(!sucesso)
         {
@@ -129,7 +136,7 @@ async atualizar (req, res)
 /**
 * Remove um produto.
 * 
-* Método DELETE: /pedidos/:codigoProduto/:codigoCliente
+* Método DELETE: /produtos/:codigoProduto/:codigoCliente
 */
 
 async apagar (req, res)
@@ -140,7 +147,7 @@ async apagar (req, res)
     {
         const codigo = req.params.codigo;
     
-        const sucesso = await dao.apagar(codigo); //ordem DAO
+        const sucesso = await dao.delete(codigo); //ordem DAO
 
         if (!sucesso)
         {

@@ -1,4 +1,4 @@
-export class Pedidos { 
+export class Pedido { 
 
     /**
      * método construtor da classe Pedidos
@@ -9,18 +9,18 @@ export class Pedidos {
      * @param {string} c cep
      */
     constructor(cc, pc, s, c) { 
-        this.clienteCodigo = cc;
-        this.produtoCodigo = pc;    
+        this.codigoCliente = cc;
+        this.codigoProduto = pc;    
         this.status = s; 
         this.cep = c;
     }
 
     getClienteCodigo() {
-        return this.clienteCodigo;
+        return this.codigoCliente;
     }
 
     getProdutoCodigo() {
-        return this.produtoCodigo;
+        return this.codigoProduto;
     }
 
     getStatus() {
@@ -32,11 +32,11 @@ export class Pedidos {
     }
 
     setClienteCodigo(cc) {
-        this.clienteCodigo = cc;
+        this.codigoCliente = cc;
     }
 
     setProdutoCodigo(pc) {
-        this.produtoCodigo = pc;
+        this.codigoProduto = pc;
     }
 
     setStatus(s) {

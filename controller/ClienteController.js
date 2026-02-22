@@ -191,9 +191,16 @@ async atualizar (req, res)
         const codigoUrl = req.params.codigo;
         const { nome, email, endereco, cep} = req.body;
 
-        const clienteAtualizado = new Cliente( codigoUrl, nome, email, endereco, cep);
+        const ClienteAntigo = await dao.buscarCodigo(codigoUrl);
+        
+        if(ClienteAntigo.length<1)
+        {
+          return res.status(404).json({ mensagem: "Cliente não encontrado para atualização." });
+        }
 
-        const sucesso = await dao.atualizar(clienteAtualizado);
+        const clienteAtualizado = new Cliente(ClienteAntigo[0].cpf, nome || ClienteAntigo[0].nome, ClienteAntigo[0].senha, email || ClienteAntigo[0].email, endereco || ClienteAntigo[0].endereco, cep || ClienteAntigo[0].cep);
+
+        const sucesso = await dao.update(codigoUrl, clienteAtualizado);
 
         if(!sucesso)
         {
@@ -225,7 +232,7 @@ async apagar (req, res)
     {
         const codigo = req.params.codigo;
 
-        const sucesso = await dao.apagar(codigo);
+        const sucesso = await dao.delete(codigo);
 
         if (!sucesso)
         {

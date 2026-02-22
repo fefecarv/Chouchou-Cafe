@@ -44,10 +44,11 @@ export class ClienteDAO{
 
     async update(codigo, dados) {
         const columns = Object.keys(dados).map(key => `${key} = ?`).join(', ');
+        
         const values = [...Object.values(dados), codigo];
-
+        
         const sql = `UPDATE cliente SET ${columns} WHERE codigo = ?`;
-
+        
         const [resultado] = await db.query(sql, values);
         
         return resultado.affectedRows > 0; 

@@ -1,4 +1,5 @@
-const db = require("../mysql");
+import db from '../mysql.js'
+import { Produto } from '../../model/Produto.js';
 
 export class ProdutoDAO{
     constructor(){}
@@ -18,26 +19,26 @@ export class ProdutoDAO{
         return resultado;
     }
 
-    async criarProduto(nome, preco, fotolink, descricao, categoria, unidade){
-        const sql = "insert into Produto(nome, preco, fotolink, descricao, categoria, unidade) values(?, ?, ?, ?, ?, ?)";
+    async criar(produto){
+        const sql = "insert into Produto(nome, preco, fotoLink, descricao, categoria, unidade) values(?, ?, ?, ?, ?, ?)";
     
-        const [resultado] = await db.query(sql, [nome, preco, fotolink, descricao, categoria, unidade]);
+        const [resultado] = await db.query(sql, [produto.getNome(), produto.getPreco(), produto.getFotoLink(), produto.getDescricao(), produto.getCategoria(), produto.getUnidade()]);
     
         return resultado;
     } 
 
-    async updateProduto(codigo, dados) {
+    async update(codigo, dados) {
         const columns = Object.keys(dados).map(key => `${key} = ?`).join(', ');
         const values = [...Object.values(dados), codigo];
 
-        const sql = `UPDATE produtos SET ${columns} WHERE codigo = ?`;
+        const sql = `UPDATE produto SET ${columns} WHERE codigo = ?`;
 
         const [resultado] = await db.query(sql, values);
         
         return resultado.affectedRows > 0; // linhas afetadas no banco de dados
     }
 
-    async deleteProduto(codigo){
+    async delete(codigo){
         const sql = "delete from Produto where codigo = ?";
     
         const [resultado] = await db.query(sql, [codigo]);

@@ -7,14 +7,16 @@ export class Produto {
      * @param {float} p preco do produto
      * @param {string} f link foto do produto 
      * @param {string} d descricao do produto
-     * @param {Array} cat categoria do produto 
+     * @param {Array} cat categoria do produto
+     * @param {Array} u unidade do produto  
      */
-    constructor(n, p, f, d) { 
+    constructor(n, p, f, d, cat, u) { 
         this.nome = n;    
         this.preco = p; 
         this.fotoLink = f;
         this.descricao = d;
         this.categoria = cat; 
+        this.unidade = u; 
     }
 
     getNome() {
@@ -37,6 +39,10 @@ export class Produto {
         return this.categoria;
     }
 
+    getUnidade(){
+        return this.unidade;
+    }
+
     setNome(n) {
         this.nome = n;
     }
@@ -55,5 +61,9 @@ export class Produto {
 
     setCategoria(cat){
         this.categoria = cat;
+    }
+
+    setUnidade(u){
+        this.unidade = u;
     }
 }
