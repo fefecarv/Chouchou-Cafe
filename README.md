@@ -25,7 +25,7 @@ O objetivo principal é criar uma plataforma simples e intuitiva constituída po
 ## 🛠 Tecnologias Utilizadas
 Este projeto está sendo construído com a seguinte stack:
 
-* **Front-end:** HTML, CSS, Tailwin
+* **Front-end:** HTML, CSS, Tailwind, Ejs
 * **Back-end:** Node Js
 * **Banco de Dados:** MySQL
 * **Outros:** Postman
