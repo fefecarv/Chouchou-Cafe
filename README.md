@@ -1,9 +1,9 @@
-# ☕ E-commerce 'Loja Café'
+# ☕ E-commerce 'Chouchou Cafés'
 ![Status](https://img.shields.io/badge/STATUS:-EM_DESENVOLVIMENTO-orange)
 > Projeto acadêmico para a disciplina **POO**.
 
 ## 📖 Sobre o Projeto
-A 'Loja Café' é um projeto de e-commerce focado na venda de cafés especiais e acessórios. O sistema está sendo desenvolvido para atender uma loja física fictícia que busca expansão digital.
+A 'Chouchou Cafés' é um projeto de e-commerce focado na venda de cafés e acessórios. O sistema está sendo desenvolvido para atender uma loja física fictícia que busca expansão digital.
 
 O objetivo principal é criar uma plataforma simples e intuitiva constituída por:
 - `Vitrine Virtual` Para clientes visualizarem e comprarem produtos
@@ -25,11 +25,12 @@ O objetivo principal é criar uma plataforma simples e intuitiva constituída po
 ## 🛠 Tecnologias Utilizadas
 Este projeto está sendo construído com a seguinte stack:
 
-* **Front-end:** `Em Construção`
+* **Front-end:** HTML, CSS, Tailwin
 * **Back-end:** Node Js
 * **Banco de Dados:** MySQL
-* **Outros:** `Em Construção`
+* **Outros:** Postman
 
 ## 🗂 Estrutura do Banco de Dados 
-<img width="892" height="319" alt="image" src="https://github.com/user-attachments/assets/af04dc20-6139-4a16-a554-38c083402b07" />
+<img width="777" height="261" alt="image" src="https://github.com/user-attachments/assets/48d1eca5-3fec-4f08-bddc-cc1217def31b" />
+
 
