@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { ClienteController } from './controller/ClienteController.js';
 import { ProdutoController } from './controller/ProdutoController.js';
 import { PedidoController } from './controller/PedidoController.js';
+import { IndexController } from './controller/IndexController.js';
 
 // Importando os Controllers
 
@@ -11,6 +12,7 @@ const router = Router();
 const clienteController = new ClienteController();
 const produtoController = new ProdutoController();
 const pedidoController = new PedidoController();
+const indexController = new IndexController();
 
 // ROTAS DE EMPRESA
 // ROTAS CLIENTE
@@ -31,4 +33,10 @@ router.get('/pedidos/:codigoProduto/:codigoCliente', (req, res) => pedidoControl
 router.post('/pedidos', (req, res) => pedidoController.criar(req, res)); // OK
 router.put('/pedidos/:codigoProduto/:codigoCliente', (req, res) => pedidoController.atualizar(req, res)); // OK
 router.delete('/pedidos/:codigoProduto/:codigoCliente', (req, res) => pedidoController.apagar(req, res)); // OK
+// ROTAS GERAIS
+router.get('/', (req,res) => indexController.renderIndex(req,res)); 
+router.get('/login', (req,res) => indexController.renderLogin(req,res)); 
+router.get('/cadastro', (req,res) => indexController.renderCadastro(req,res)); 
+router.post('/login', (req,res) => clienteController.login(req,res)); 
+
 export { router };

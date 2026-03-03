@@ -17,6 +17,8 @@ export class ClienteController
         try{
             const { email, senha } = req.body;
 
+            console.log(email, senha)
+
             // 1. Validação básica de entrada
             if (!email || !senha)
             {
@@ -26,10 +28,11 @@ export class ClienteController
             // 2. Busca o usuário pelo Email
             const cliente = await dao.buscarEmail(email);
 
+            console.log(cliente)
             // 3. Verifação de Segurança 
             // Se o usuário não existe OU a senha não bate, retornamos erro 401 (Unauthorized).
             // Atenção: Usamos uma mensagem genérica para evitar enumeração de usuários (pesquise mais a fundo sobre isso).
-            if (!cliente || cliente.getSenha() !== senha)
+            if (cliente.length<1 || cliente[0].senha !== senha)
             {
                 return res.status(401).json({ mensagem: "Email ou senha inválidos."});
             }
@@ -47,24 +50,22 @@ export class ClienteController
              * @param {string} cep cep cliente 
              */
             const clienteLogado = {
-                cpf: cliente.getCpf(),
-                nome: cliente.getNome(),
-                email: cliente.getEmail(),
-                endereco: cliente.getEndereco(),
-                cep: cliente.getCep()
-            };
-
-            res.status(200).json({
-                mensagem: "Login realizado com sucesso!",
-                cliente: clienteLogado
-            });
+                cpf: cliente[0].cpf, // quando o banco traz traz em uma array por isso o [0].
+                nome: cliente[0].nome,
+                email: cliente[0].email,
+                endereco: cliente[0].endereco,
+                cep: cliente[0].cep
+            }  
+              
+            res.redirect("/");
         }
 
         catch (erro)
         {
             console.log(erro);
 
-            res.status(500).json({mensagem: "Erro interno no servidor ao realizar login.", detalhe: erro.mensagem });
+            res.redirect("/login");
+
         }
     } 
 
@@ -155,21 +156,14 @@ export class ClienteController
 
             // Retornamos sucesso, mas sem expor a senha gerada explicitamente no JSON de resposta,
             // apenas informamos que foi criado.
-            res.status(201).json({
-                mensagem: "Cliente criado com sucesso! A senha padrão são os 5 primeiros dígitos do CPF."
-            });
+            res.redirect("/");
         }
 
         catch(erro)
         {
             console.log(erro);
 
-            if (erro.code == 'ER_DUP_ENTRY')
-            {
-                return res.status(409).json({ mensagem: "Já existe um usuário cadastrado com este CPF ou e-mail."});
-            }
-
-            res.status(400).json({ mensagem: "Erro ao cadastrar usuário.", detalhe: erro.message });
+           res.redirect("/cadastro");
         
         }
     
