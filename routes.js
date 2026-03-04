@@ -3,6 +3,7 @@ import { ClienteController } from './controller/ClienteController.js';
 import { ProdutoController } from './controller/ProdutoController.js';
 import { PedidoController } from './controller/PedidoController.js';
 import { IndexController } from './controller/IndexController.js';
+import { AuthController } from './controller/AuthController.js';
 
 // Importando os Controllers
 
@@ -13,6 +14,7 @@ const clienteController = new ClienteController();
 const produtoController = new ProdutoController();
 const pedidoController = new PedidoController();
 const indexController = new IndexController();
+const authController = new AuthController();
 
 // ROTAS DE EMPRESA
 // ROTAS CLIENTE
@@ -35,8 +37,8 @@ router.put('/pedidos/:codigoProduto/:codigoCliente', (req, res) => pedidoControl
 router.delete('/pedidos/:codigoProduto/:codigoCliente', (req, res) => pedidoController.apagar(req, res)); // OK
 // ROTAS GERAIS
 router.get('/', (req,res) => indexController.renderIndex(req,res)); 
-router.get('/login', (req,res) => indexController.renderLogin(req,res)); 
-router.get('/cadastro', (req,res) => indexController.renderCadastro(req,res)); 
-router.post('/login', (req,res) => clienteController.login(req,res)); 
+router.get('/login', (req,res) => authController.renderLogin(req,res)); 
+router.get('/cadastro', (req,res) => authController.renderCadastro(req,res)); 
+router.post('/login', (req,res) => authController.login(req,res)); 
 
 export { router };

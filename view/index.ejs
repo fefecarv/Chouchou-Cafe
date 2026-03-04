@@ -1,11 +1,14 @@
- <!-- npm i ejs -->
-  <!-- comentar = ctrl + ; , sempre atualizar um arquivo js reiniciar o terminal pq os arquivos js compilam em tempo de execução -->
+ <!-- 
+    npm i ejs <-- instalar biblioteca
+    comentar = ctrl + ; 
+    sempre atualizar um arquivo js reiniciar o terminal pq os arquivos js compilam em tempo de execução (node app js)
+-->
  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expresso Mágico - Loja</title>
+    <title>Chouchou Café</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,7 +26,11 @@
                             700: '#6f4334',
                             800: '#5c3528',
                             900: '#4a281d',
-                        }
+                        },
+                        rosa: {
+                           100: '#5e300f',
+                           200: '#fad3e0'
+                        },        
                     }
                 }
             }
@@ -31,21 +38,18 @@
     </script>
 </head>
 <body class="bg-coffee-50 text-gray-800 antialiased selection:bg-coffee-200">
-
-    <header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-coffee-100 transition-all">
+<header class="fixed w-full top-0 z-50 bg-rosa-200/90 backdrop-blur-md border-b border-coffee-100 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-full bg-coffee-800 flex items-center justify-center text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
-                            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
-                            <line x1="6" x2="6" y1="2" y2="4"/>
-                            <line x1="10" x2="10" y1="2" y2="4"/>
-                            <line x1="14" x2="14" y1="2" y2="4"/>
-                        </svg>
-                    </div>
-                    <span class="text-xl font-bold text-coffee-900 tracking-tight">Expresso Mágico</span>
+            <div class="flex justify-between items-center py-4">
+                
+                <div class="flex items-center">
+                    <a href="/" class="transition-transform duration-200 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-coffee-500 rounded-md">
+                        <img 
+                            src="/Assets/logo.png" 
+                            alt="Logotipo" 
+                            class="h-16 md:h-20 w-auto object-contain"
+                        >
+                    </a>
                 </div>
 
                 <nav class="hidden md:flex items-center gap-8">
@@ -89,83 +93,44 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                
+                 <!-- ↓ verifica se existe produtos cadastrados no sistema ↓ -->
+                <% if (produtos && produtos.length > 0) { %>
+                 <!-- pega os produtos entre o intervalo determinado (nesse caso 4) e mostra -->
+                    <% produtos.slice(0, 4).forEach(produto => { %>   
                 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col">
                     <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 h-56">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" alt="Espresso" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="<%= produto.fotoLink %>" alt="<%= produto.nome %>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold text-gray-900">Espresso Duplo</h3>
-                        <p class="mt-1 text-sm text-gray-500 line-clamp-2 mb-4">Intenso e encorpado, feito com grãos 100% arábica de torra escura.</p>
+                        <h3 class="text-lg font-bold text-gray-900"><%= produto.nome %></h3>
+                        <p class="mt-1 text-sm text-gray-500 line-clamp-2 mb-4"><%= produto.descricao %></p>
                         <div class="mt-auto flex items-center justify-between">
-                            <span class="text-lg font-extrabold text-coffee-700">R$ 12,90</span>
+                            <!-- coloca o preço determinado no cadastro e troca . por ,                       ↓ -->
+                            <span class="text-lg font-extrabold text-coffee-700">R$ <%= produto.preco%></span>
                             <button class="w-10 h-10 rounded-full bg-coffee-50 text-coffee-700 flex items-center justify-center group-hover:bg-coffee-800 group-hover:text-white transition-colors">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col">
-                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 h-56">
-                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67ef46?auto=format&fit=crop&q=80&w=600" alt="Cappuccino" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold text-gray-900">Cappuccino Italiano</h3>
-                        <p class="mt-1 text-sm text-gray-500 line-clamp-2 mb-4">A proporção perfeita de espresso, leite vaporizado e uma espuma cremosa.</p>
-                        <div class="mt-auto flex items-center justify-between">
-                            <span class="text-lg font-extrabold text-coffee-700">R$ 16,50</span>
-                            <button class="w-10 h-10 rounded-full bg-coffee-50 text-coffee-700 flex items-center justify-center group-hover:bg-coffee-800 group-hover:text-white transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col">
-                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 h-56">
-                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600" alt="Latte Art" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold text-gray-900">Caramel Macchiato</h3>
-                        <p class="mt-1 text-sm text-gray-500 line-clamp-2 mb-4">Leite cremoso com notas de baunilha, espresso e finalizado com calda de caramelo.</p>
-                        <div class="mt-auto flex items-center justify-between">
-                            <span class="text-lg font-extrabold text-coffee-700">R$ 19,00</span>
-                            <button class="w-10 h-10 rounded-full bg-coffee-50 text-coffee-700 flex items-center justify-center group-hover:bg-coffee-800 group-hover:text-white transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col">
-                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 h-56">
-                        <img src="https://images.unsplash.com/photo-1550133730-695473e544be?auto=format&fit=crop&q=80&w=600" alt="Iced Coffee" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold text-gray-900">Cold Brew</h3>
-                        <p class="mt-1 text-sm text-gray-500 line-clamp-2 mb-4">Café extraído a frio por 18 horas. Refrescante, suave e com menor acidez.</p>
-                        <div class="mt-auto flex items-center justify-between">
-                            <span class="text-lg font-extrabold text-coffee-700">R$ 15,00</span>
-                            <button class="w-10 h-10 rounded-full bg-coffee-50 text-coffee-700 flex items-center justify-center group-hover:bg-coffee-800 group-hover:text-white transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+                <% }) %>
+                <% } else { %> 
+                <div class="col-span-full text-center py-10 text-coffee-900">
+                <p>Você chegou ao fim dos produtos.</p>
+            </div>
+            <% } %>    
             </div>
         </section>
     </main>
-
-    <footer class="bg-coffee-900 text-coffee-100 border-t border-coffee-800">
+<!-- border-t border-coffee-800 <-- criar borda -->
+    <footer class="bg-rosa-200 text-coffee-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2">
-                <span class="text-xl font-bold text-white tracking-tight">Expresso Mágico</span>
+                <span class="text-xl font-bold text-coffee-900 tracking-tight">Chouchou Cafés</span>
             </div>
-            <div class="text-sm text-coffee-300 text-center md:text-left">
-                <p>Visite nossa loja física: Centro, Camaçari - BA</p>
-                <p class="mt-1">&copy; 2026 Expresso Mágico. Todos os direitos reservados.</p>
+            <div class="text-sm text-coffee-900 text-center md:text-left">
+                <p>Visite nossa loja física: Centro, Salvador - BA</p>
+                <p class="mt-1">&copy; 2026 Chouchou Cafés. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

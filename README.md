@@ -1,4 +1,4 @@
-# ☕ E-commerce 'Loja Café'
+# ☕ E-commerce 'Chouchou Cafés'
 ![Status](https://img.shields.io/badge/STATUS:-EM_DESENVOLVIMENTO-orange)
 > Projeto acadêmico para a disciplina **POO**.
 
@@ -25,10 +25,10 @@ O objetivo principal é criar uma plataforma simples e intuitiva constituída po
 ## 🛠 Tecnologias Utilizadas
 Este projeto está sendo construído com a seguinte stack:
 
-* **Front-end:** `Em Construção`
+* **Front-end:** HTML, CSS
 * **Back-end:** Node Js
 * **Banco de Dados:** MySQL
-* **Outros:** `Em Construção`
+* **Outros:** Tailwind, Postman
 
 ## 🗂 Estrutura do Banco de Dados 
 <img width="892" height="319" alt="image" src="https://github.com/user-attachments/assets/af04dc20-6139-4a16-a554-38c083402b07" />

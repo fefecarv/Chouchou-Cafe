@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { router } from './routes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import session from 'express-session';
 
 // Configuração das variáveis de ambiente
 dotenv.config();
@@ -18,9 +19,22 @@ app.use(cors());
 
 // Configuração do EJS
 app.set('view engine', 'ejs');
+
 app.set('views', path.join(__dirname, 'view'));
 
 app.use(express.json());
+
+app.use('/assets', express.static(path.join(__dirname, './Public/Assets')));
+
+app.use(session({
+    secret: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 
+    resave: false,             
+    saveUninitialized: false,  
+    cookie: { 
+        secure: false,         
+        maxAge: 1000 * 60 * 60 
+    }
+}));
 
 // Autorizando a chegada de dados do <form> no req.body
 app.use(express.urlencoded({ extended: true }));
@@ -52,3 +66,4 @@ app.listen(PORT, () =>
   console.log(`📡 URL base: http://localhost:${PORT}.`);
   console.log(`-----------------------------------------`);
 });
+
