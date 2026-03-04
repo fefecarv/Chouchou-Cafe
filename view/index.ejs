@@ -30,7 +30,7 @@
                         rosa: {
                            100: '#5e300f',
                            200: '#fad3e0'
-                        },        
+                        }        
                     }
                 }
             }
@@ -39,31 +39,64 @@
 </head>
 <body class="bg-coffee-50 text-gray-800 antialiased selection:bg-coffee-200">
 <header class="fixed w-full top-0 z-50 bg-rosa-200/90 backdrop-blur-md border-b border-coffee-100 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                
-                <div class="flex items-center">
-                    <a href="/" class="transition-transform duration-200 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-coffee-500 rounded-md">
-                        <img 
-                            src="/Assets/logo.png" 
-                            alt="Logotipo" 
-                            class="h-16 md:h-20 w-auto object-contain"
-                        >
-                    </a>
-                </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            
+            <div class="flex items-center">
+                <a href="/" class="transition-transform duration-200 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-coffee-500 rounded-md">
+                    <img 
+                        src="/Assets/logo.png" 
+                        alt="Logotipo" 
+                        class="h-16 md:h-20 w-auto object-contain"
+                    >
+                </a>
+            </div>
 
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="#" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Cardápio</a>
-                    <a href="#" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Sobre Nós</a>
-                    
-                    <div class="flex items-center gap-4 border-l border-gray-200 pl-8">
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="/produtos" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Catálogo</a>
+                <a href="/sobre-nos" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Sobre Nós</a>
+                
+                <div class="flex items-center gap-4 border-l border-gray-200 pl-8">
+                    <% if (req.session.user) { %>
+                        <div class="relative group">
+                            <div class="flex items-center gap-1.5 text-sm font-medium text-coffee-700 hover:text-coffee-900 transition py-2 cursor-pointer">
+                                <span>Olá, <%= req.session.user.nome %></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                            </div>
+
+                            <div class="absolute right-0 top-full w-48 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right scale-95 group-hover:scale-100 z-50">
+                                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-2 flex flex-col gap-1">
+                                    
+                                    <a href="/perfil" class="px-3 py-2 text-sm text-gray-700 hover:bg-coffee-50 hover:text-coffee-900 rounded-lg transition-colors flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        Minha Conta
+                                    </a>
+                                    <a href="/pedidos" class="px-3 py-2 text-sm text-gray-700 hover:bg-coffee-50 hover:text-coffee-900 rounded-lg transition-colors flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                        Meus Pedidos
+                                    </a>
+                                    
+                                    <div class="h-px bg-gray-100 my-1"></div>
+                                    
+                                    <form action="/logout" method="post" class="m-0">
+                                        <button type="submit" class="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                                            Sair
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>    
                         <a href="/login" class="text-sm font-medium text-coffee-700 hover:text-coffee-900 transition">Entrar</a>
                         <a href="/cadastro" class="text-sm font-medium bg-coffee-800 text-white px-5 py-2.5 rounded-full hover:bg-coffee-900 transition-all shadow hover:shadow-md active:scale-95">Criar Conta</a>
-                    </div>
-                </nav>
-            </div>
+                    <% } %>    
+                </div>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
 
     <main class="pt-20">
         <section class="relative bg-coffee-900 overflow-hidden">
@@ -77,8 +110,8 @@
                 <p class="mt-4 max-w-2xl text-lg text-coffee-100 mb-10">
                     Descubra nossa seleção de grãos especiais e bebidas preparadas por baristas apaixonados. Peça online e receba a energia que você precisa.
                 </p>
-                <a href="#loja" class="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-full text-coffee-900 bg-coffee-50 hover:bg-white transition-colors shadow-lg">
-                    Explorar Cardápio
+                <a href="/produtos" class="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-full text-coffee-900 bg-coffee-50 hover:bg-white transition-colors shadow-lg">
+                    Explorar Catálogo
                 </a>
             </div>
         </section>
@@ -86,10 +119,10 @@
         <section id="loja" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="flex justify-between items-end mb-10">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Nossos Clássicos</h2>
-                    <p class="mt-2 text-gray-500">Os favoritos da casa, prontos para você.</p>
+                    <h2 class="text-3xl font-bold text-coffee-900">Produtos</h2>
+                    <p class="mt-2 text-gray-500">Nossa curadoria busca selecionar os melhores produtos, tudo para você.</p>
                 </div>
-                <a href="#" class="hidden sm:flex text-sm font-medium text-coffee-600 hover:text-coffee-800">Ver todos &rarr;</a>
+                <a href="/produtos" class="hidden sm:flex text-sm font-medium text-coffee-600 hover:text-coffee-800">Ver todos &rarr;</a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -99,7 +132,7 @@
                     <% produtos.slice(0, 4).forEach(produto => { %>   
                 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col">
                     <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 h-56">
-                        <img src="<%= produto.fotoLink %>" alt="<%= produto.nome %>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="/Assets/<%= produto.fotoLink %>" alt="<%= produto.nome %>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-lg font-bold text-gray-900"><%= produto.nome %></h3>
@@ -123,13 +156,12 @@
         </section>
     </main>
 <!-- border-t border-coffee-800 <-- criar borda -->
-    <footer class="bg-rosa-200 text-coffee-100">
+    <footer class="bg-rosa-200 text-coffee-100 border-t border-coffee-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2">
                 <span class="text-xl font-bold text-coffee-900 tracking-tight">Chouchou Cafés</span>
             </div>
             <div class="text-sm text-coffee-900 text-center md:text-left">
-                <p>Visite nossa loja física: Centro, Salvador - BA</p>
                 <p class="mt-1">&copy; 2026 Chouchou Cafés. Todos os direitos reservados.</p>
             </div>
         </div>

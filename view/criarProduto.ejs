@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produto - Admin | Chouchou Cafés</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased font-sans h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col hidden md:flex shadow-xl z-20">
+        <div class="h-20 flex items-center px-6 border-b border-slate-800 bg-slate-950">
+            <span class="text-lg font-bold text-white tracking-wide">Chouchou Cafés</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <p class="px-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Gerenciamento</p>
+            
+            <a href="/dashboard/produtos" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 group-hover:text-amber-500 transition-colors"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                Lista de Produtos
+            </a>
+            
+            <a href="/dashboard/produtos/novo" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                Criar Novo Produto
+            </a>
+
+            <!-- <a href="/dashboard/produtos/apagar" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 group-hover:text-red-500 transition-colors"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                Apagar Produto
+            </a> -->
+
+            <!-- <p class="px-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4 mt-8">Vendas</p>
+            
+            <a href="/dashboard/pedidos" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 group-hover:text-blue-500 transition-colors"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Ver Pedidos
+            </a> -->
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full overflow-hidden bg-gray-50/50">
+        
+        <header class="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-10 shadow-sm z-10">
+            <div class="flex items-center gap-4">
+                <nav class="flex text-sm font-medium text-gray-500">
+                    <a href="/dashboard" class="hover:text-gray-900 transition-colors">Dashboard</a>
+                    <span class="mx-2">/</span>
+                    <a href="/dashboard/produtos" class="hover:text-gray-900 transition-colors">Produtos</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-900">Novo</span>
+                </nav>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-medium text-gray-600 hidden sm:block">Olá, Administrador</span>
+                <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold shadow-inner">A</div>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-6 lg:p-10">
+            <div class="max-w-3xl mx-auto">
+                
+                <div class="mb-8">
+                    <h1 class="text-2xl font-bold text-gray-900">Adicionar Novo Produto</h1>
+                    <p class="text-gray-500 text-sm mt-1">Preencha as informações detalhadas para cadastrar um item no cardápio.</p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 md:p-8">
+                    <form action="/dashboard/produtos/novo" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <div class="md:col-span-2">
+                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome do Produto <span class="text-red-500">*</span></label>
+                            <input type="text" id="nome" name="nome" required
+                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-gray-800"
+                                placeholder="Ex: Cappuccino de Caramelo">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="descricao" class="block text-sm font-medium text-gray-700 mb-1">Descrição Detalhada <span class="text-red-500">*</span></label>
+                            <textarea id="descricao" name="descricao" rows="4" required
+                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-gray-800 resize-none"
+                                placeholder="Descreva os ingredientes e a experiência do sabor..."></textarea>
+                        </div>
+
+                         <div class="md:col-span-2">
+                           <div>
+                                <label for="cars" class="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
+                                <div class="relative">
+                                    <select name="categoria" id="categoria"
+                                        class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-gray-800 appearance-none cursor-pointer">
+                                        <option value="" disabled selected>Selecione uma opção...</option>
+                                        <option value="Grãos">Grãos</option>
+                                        <option value="Moídos">Moídos</option>
+                                        <option value="Acessórios">Acessórios</option>
+                                        <option value="Cápsulas">Cápsulas</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="preco" class="block text-sm font-medium text-gray-700 mb-1">Preço (Unidade) <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">R$</span>
+                                </div>
+                                <input type="number" id="preco" name="preco" step="0.01" min="0" required
+                                    class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-gray-800"
+                                    placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="unidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade em Estoque <span class="text-red-500">*</span></label>
+                            <input type="number" id="unidade" name="unidade" min="0" required
+                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-gray-800"
+                                placeholder="Ex: 50">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="foto" class="block text-sm font-medium text-gray-700 mb-1">Nome do Arquivo da Foto</label>
+                            <div class="flex flex-col gap-2">
+                                <div class="relative flex items-center">
+                                    <span class="absolute left-3 text-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                                    </span>
+                                    <input type="text" id="fotolink" name="fotolink" 
+                                        class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-gray-800"
+                                        placeholder="Ex: cafe-gelado.png">
+                                </div>
+                                
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3 items-start mt-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                                    <div class="text-sm text-blue-800">
+                                        <strong>Atualização em breve:</strong> Por enquanto, digite apenas o nome do arquivo da imagem que já está no servidor. Este campo será atualizado futuramente para um botão de anexo (upload direto de imagem).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 flex items-center justify-end gap-4 mt-6 pt-6 border-t border-gray-100">
+                            <a href="/dashboard/produtos" class="px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="px-6 py-2.5 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] rounded-lg shadow-sm transition-all flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                                Salvar Produto
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

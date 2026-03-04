@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Chouchou Cafés</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            200: '#eaddd7',
+                            300: '#e0cec7',
+                            400: '#d2bab0',
+                            500: '#a37a6a',
+                            600: '#8b5a4b',
+                            700: '#6f4334',
+                            800: '#5c3528',
+                            900: '#4a281d',
+                        },
+                        rosa: {
+                           100: '#fff8ee',
+                           200: '#fad3e0',
+                           300: '#d8a5b6'
+                        }    
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-coffee-50 text-gray-800 antialiased selection:bg-coffee-200 flex flex-col min-h-screen">
+
+<header class="fixed w-full top-0 z-50 bg-rosa-200/90 backdrop-blur-md border-b border-coffee-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            
+            <div class="flex items-center">
+                <a href="/" class="transition-transform duration-200 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-coffee-500 rounded-md">
+                    <img 
+                        src="/Assets/logo.png" 
+                        alt="Logotipo" 
+                        class="h-16 md:h-20 w-auto object-contain"
+                    >
+                </a>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="/produtos" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Catálogo</a>
+                <a href="/sobre-nos" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Sobre Nós</a>
+                
+                <div class="flex items-center gap-4 border-l border-gray-200 pl-8">
+                    <% if (req.session.user) { %>
+                        <div class="relative group">
+                            <div class="flex items-center gap-1.5 text-sm font-medium text-coffee-700 hover:text-coffee-900 transition py-2 cursor-pointer">
+                                <span>Olá, <%= req.session.user.nome %></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                            </div>
+
+                            <div class="absolute right-0 top-full w-48 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right scale-95 group-hover:scale-100 z-50">
+                                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-2 flex flex-col gap-1">
+                                    
+                                    <a href="/perfil" class="px-3 py-2 text-sm text-gray-700 hover:bg-coffee-50 hover:text-coffee-900 rounded-lg transition-colors flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        Minha Conta
+                                    </a>
+                                    <a href="/pedidos" class="px-3 py-2 text-sm text-gray-700 hover:bg-coffee-50 hover:text-coffee-900 rounded-lg transition-colors flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                        Meus Pedidos
+                                    </a>
+                                    
+                                    <div class="h-px bg-gray-100 my-1"></div>
+                                    
+                                    <form action="/logout" method="post" class="m-0">
+                                        <button type="submit" class="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                                            Sair
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>    
+                        <a href="/login" class="text-sm font-medium text-coffee-700 hover:text-coffee-900 transition">Entrar</a>
+                        <a href="/cadastro" class="text-sm font-medium bg-coffee-800 text-white px-5 py-2.5 rounded-full hover:bg-coffee-900 transition-all shadow hover:shadow-md active:scale-95">Criar Conta</a>
+                    <% } %>    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <main class="pt-24 pb-20 flex-grow">
+        
+        <section class="relative bg-coffee-900 py-24 lg:py-32 overflow-hidden mx-4 sm:mx-6 lg:mx-8 rounded-3xl mt-4 shadow-xl">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?auto=format&fit=crop&q=80&w=1920" alt="Processo de torra de café" class="w-full h-full object-cover opacity-30 mix-blend-multiply">
+            </div>
+            <div class="relative max-w-4xl mx-auto px-6 text-center z-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+                    Redefinindo a experiência <br class="hidden sm:block"> do café em casa.
+                </h1>
+                <p class="text-lg md:text-xl text-coffee-100 max-w-2xl mx-auto leading-relaxed">
+                    Nascemos digitais para entregar frescor, qualidade e aroma diretamente na sua porta, sem intermediários.
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-coffee-900 font-bold tracking-wider uppercase text-sm mb-3 block">Nossas Raízes</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-coffee-900 mb-6 leading-tight">De Salvador para a sua xícara favorita.</h2>
+                    
+                    <div class="space-y-5 text-gray-600 leading-relaxed text-lg">
+                        <p>
+                            A história da <strong>Chouchou Cafés</strong> começou com uma paixão e uma percepção simples: encontrar café de alta qualidade não deveria ser uma tarefa difícil. Fundada em Salvador, Bahia, nossa marca nasceu do desejo de democratizar o acesso aos melhores grãos e métodos de preparo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-coffee-200 rounded-[2rem] transform rotate-3 scale-105 opacity-50 z-0 hidden lg:block"></div>
+                    <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=800" alt="Café sendo coado" class="relative z-10 rounded-2xl shadow-xl w-full h-[500px] object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white border-y border-coffee-100 py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-coffee-900 mb-4">Nossos princípios</h2>
+                    <!-- <p class="text-lg text-coffee-800">Ser um e-commerce 100% digital não foi um acidente, foi uma escolha estratégica para beneficiar você, nosso cliente.</p> -->
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    
+                    <div class="bg-rosa-100 rounded-2xl p-8 border border-coffee-100 hover:shadow-lg transition-shadow">
+                        <div class="w-14 h-14 bg-coffee-800 text-white rounded-xl flex items-center justify-center mb-6 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-coffee-900 mb-3">Foco no Produto</h3>
+                        <p class="text-gray-600 leading-relaxed">Investimos fortemente na curadoria de grãos excepcionais e em embalagens que preservam o aroma.</p>
+                    </div>
+
+                    <div class="bg-rosa-100 rounded-2xl p-8 border border-coffee-100 hover:shadow-lg transition-shadow">
+                        <div class="w-14 h-14 bg-coffee-800 text-white rounded-xl flex items-center justify-center mb-6 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-coffee-900 mb-3">Sempre Fresco</h3>
+                        <p class="text-gray-600 leading-relaxed">Nosso estoque é dinâmico e otimizado. O café não fica semanas em uma prateleira de vitrine; ele é armazenado adequadamente e enviado para você no auge do frescor.</p>
+                    </div>
+
+                    <div class="bg-rosa-100 rounded-2xl p-8 border border-coffee-100 hover:shadow-lg transition-shadow">
+                        <div class="w-14 h-14 bg-coffee-800 text-white rounded-xl flex items-center justify-center mb-6 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-coffee-900 mb-3">Conveniência Máxima</h3>
+                        <p class="text-gray-600 leading-relaxed">A sua experiência favorita agora está no seu celular. Você navega pelo nosso catálogo, faz o pedido e nós entregamos a magia direto na sua porta.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h2 class="text-3xl font-bold text-coffee-900 mb-6">Pronto para transformar sua rotina?</h2>
+            <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">Explore nosso catálogo online e descubra o sabor que estava faltando no seu dia a dia.</p>
+            <a href="/produtos" class="inline-flex items-center justify-center px-8 py-4 bg-coffee-800 text-white font-bold rounded-full shadow-lg hover:bg-coffee-900 hover:shadow-xl transition-all active:scale-95 gap-3 text-lg">
+                Ver o Catálogo Completo
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="bg-rosa-200 text-coffee-100 border-t border-coffee-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="text-xl font-bold text-coffee-900 tracking-tight">Chouchou Cafés</span>
+            </div>
+            <div class="text-sm text-coffee-900 text-center md:text-left">
+                <!-- <p>O melhor café, entregue com carinho na sua casa em Salvador e região.</p> -->
+                <p class="mt-1">&copy; 2026 Chouchou Cafés. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

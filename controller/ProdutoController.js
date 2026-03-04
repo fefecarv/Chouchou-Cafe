@@ -74,9 +74,7 @@ export class ProdutoController
             
             await dao.criar(novoProduto);
 
-            res.status(201).json({
-                mensagem: "Produto criado."
-            });
+            res.redirect("/dashboard/produtos");
         }
 
         catch(erro)
@@ -122,7 +120,7 @@ async atualizar (req, res)
             return res.status(404).json({ mensagem: "Produto não encontrado para atualização." });
         }
 
-        res.status(200).json({ mensagem: "Produto atualizado com sucesso!" });
+        res.redirect("/dashboard/produtos");
     }
 
     catch (erro)
@@ -154,7 +152,7 @@ async apagar (req, res)
             return res.status(404).json({ mensagem: "Produto não encontrado."});
         }  
         
-        res.status(200).json({ mensagem: "Produto excluído com sucesso!"});
+        res.redirect("/dashboard/produtos");
     }
 
     catch (erro)

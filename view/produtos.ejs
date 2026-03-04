@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Chouchou Cafés</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            200: '#eaddd7',
+                            300: '#e0cec7',
+                            400: '#d2bab0',
+                            500: '#a37a6a',
+                            600: '#8b5a4b',
+                            700: '#6f4334',
+                            800: '#5c3528',
+                            900: '#4a281d',
+                        },
+                        rosa: {
+                           100: '#5e300f',
+                           200: '#fad3e0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-coffee-50 text-gray-800 antialiased selection:bg-coffee-200">
+
+    <header class="fixed w-full top-0 z-50 bg-rosa-200/90 backdrop-blur-md border-b border-coffee-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            
+            <div class="flex items-center">
+                <a href="/" class="transition-transform duration-200 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-coffee-500 rounded-md">
+                    <img 
+                        src="/Assets/logo.png" 
+                        alt="Logotipo" 
+                        class="h-16 md:h-20 w-auto object-contain"
+                    >
+                </a>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="/produtos" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Catálogo</a>
+                <a href="/sobre-nos" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Sobre Nós</a>
+                
+                <div class="flex items-center gap-4 border-l border-gray-200 pl-8">
+                    <% if (req.session.user) { %>
+                        <div class="relative group">
+                            <div class="flex items-center gap-1.5 text-sm font-medium text-coffee-700 hover:text-coffee-900 transition py-2 cursor-pointer">
+                                <span>Olá, <%= req.session.user.nome %></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                            </div>
+
+                            <div class="absolute right-0 top-full w-48 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right scale-95 group-hover:scale-100 z-50">
+                                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-2 flex flex-col gap-1">
+                                    
+                                    <a href="/perfil" class="px-3 py-2 text-sm text-gray-700 hover:bg-coffee-50 hover:text-coffee-900 rounded-lg transition-colors flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        Minha Conta
+                                    </a>
+                                    <a href="/pedidos" class="px-3 py-2 text-sm text-gray-700 hover:bg-coffee-50 hover:text-coffee-900 rounded-lg transition-colors flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                        Meus Pedidos
+                                    </a>
+                                    
+                                    <div class="h-px bg-gray-100 my-1"></div>
+                                    
+                                    <form action="/logout" method="post" class="m-0">
+                                        <button type="submit" class="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                                            Sair
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>    
+                        <a href="/login" class="text-sm font-medium text-coffee-700 hover:text-coffee-900 transition">Entrar</a>
+                        <a href="/cadastro" class="text-sm font-medium bg-coffee-800 text-white px-5 py-2.5 rounded-full hover:bg-coffee-900 transition-all shadow hover:shadow-md active:scale-95">Criar Conta</a>
+                    <% } %>    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <main class="pt-24 pb-20">
+        
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-coffee-800 tracking-tight mb-4">Nosso Catálogo</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Explore nossa seleção completa de produtos cuidadosamente selecionados.</p>
+            
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <a href="#cat-Grãos" class="px-5 py-2 rounded-full bg-white border border-coffee-200 text-coffee-700 text-sm font-medium hover:bg-coffee-50 hover:border-coffee-300 transition-colors shadow-sm">☕ Grãos</a>
+                <a href="#cat-Moídos" class="px-5 py-2 rounded-full bg-white border border-coffee-200 text-coffee-700 text-sm font-medium hover:bg-coffee-50 hover:border-coffee-300 transition-colors shadow-sm">🥄 Moídos</a>
+                <a href="#cat-Acessórios" class="px-5 py-2 rounded-full bg-white border border-coffee-200 text-coffee-700 text-sm font-medium hover:bg-coffee-50 hover:border-coffee-300 transition-colors shadow-sm">🏺 Acessórios</a>
+                <a href="#cat-Cápsulas" class="px-5 py-2 rounded-full bg-white border border-coffee-200 text-coffee-700 text-sm font-medium hover:bg-coffee-50 hover:border-coffee-300 transition-colors shadow-sm">🔘 Cápsulas</a>
+            </div>
+        </section>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+            
+            <% 
+                // Definindo as categorias na ordem em que queremos exibir na tela
+                const categorias = ['Grãos', 'Moídos', 'Acessórios', 'Cápsulas']; 
+                let encontrouProdutos = false;
+            %>
+
+            <% if (produtos && produtos.length > 0) { %>
+                <% categorias.forEach(categoria => { %>
+                    <% 
+                        // Filtra os produtos da categoria atual
+                        const produtosDaCategoria = produtos.filter(p => p.categoria === categoria); 
+                    %>
+                    
+                    <% if (produtosDaCategoria.length > 0) { %>
+                        <% encontrouProdutos = true; %>
+                        <section id="cat-<%= categoria %>" class="scroll-mt-32">
+                            <div class="border-b border-coffee-200 pb-4 mb-8 flex items-end justify-between">
+                                <div>
+                                    <h2 class="text-3xl font-bold text-coffee-900"><%= categoria %></h2>
+                                    <p class="text-gray-500 mt-1 text-sm">
+                                        <%= produtosDaCategoria.length %> <%= produtosDaCategoria.length === 1 ? 'item disponível' : 'itens disponíveis' %>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                                <% produtosDaCategoria.forEach(produto => { %>
+                                    
+                                    <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full relative">
+                                        
+                                        <% if (produto.unidade == 0) { %>
+                                            <div class="absolute top-3 right-3 z-10 bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                                Esgotado
+                                            </div>
+                                        <% } else if (produto.unidade <= 5) { %>
+                                            <div class="absolute top-3 right-3 z-10 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                                Últimas unidades
+                                            </div>
+                                        <% } %>
+
+                                        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-coffee-50 h-56 relative">
+                                            <% if (produto.fotoLink) { %>
+                                                <img src="/Assets/<%= produto.fotoLink %>" alt="<%= produto.nome %>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 <%= produto.unidade == 0 ? 'grayscale opacity-70' : '' %>">
+                                            <% } else { %>
+                                                <div class="w-full h-full flex items-center justify-center text-coffee-300">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                        
+                                        <div class="p-5 flex flex-col flex-grow">
+                                            <h3 class="text-lg font-bold text-gray-900 leading-tight"><%= produto.nome %></h3>
+                                            <p class="mt-2 text-sm text-gray-500 line-clamp-2 mb-4"><%= produto.descricao %></p>
+                                            
+                                            <div class="mt-auto flex items-center justify-between">
+                                                <span class="text-xl font-extrabold text-coffee-700">
+                                                    R$ <%= Number(produto.preco).toFixed(2).replace('.', ',') %>
+                                                </span>
+                                                
+                                                <% if (produto.unidade > 0) { %>
+                                                    <form action="/carrinho/adicionar" method="POST" class="m-0 p-0">
+                                                        <input type="hidden" name="produtoId" value="<%= produto.codigo %>">
+                                                        <button type="submit" class="w-10 h-10 rounded-full bg-coffee-50 text-coffee-700 flex items-center justify-center hover:bg-coffee-800 hover:text-white transition-colors active:scale-95 shadow-sm" title="Adicionar ao carrinho">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/><line x1="12" x2="12" y1="7" y2="13"/><line x1="9" x2="15" y1="10" y2="10"/></svg>
+                                                        </button>
+                                                    </form>
+                                                <% } else { %>
+                                                    <button disabled class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center cursor-not-allowed">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" x2="19.07" y1="4.93" y2="19.07"/></svg>
+                                                    </button>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </section>
+                    <% } %>
+                <% }) %>
+                
+                <% if (!encontrouProdutos) { %>
+                    <div class="text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                        <div class="text-4xl mb-4">🏪</div>
+                        <h3 class="text-xl font-bold text-gray-900">Estamos reorganizando nossas prateleiras</h3>
+                        <p class="text-gray-500 mt-2">Nenhum produto foi encontrado nas categorias principais no momento.</p>
+                    </div>
+                <% } %>
+
+            <% } else { %>
+                <div class="text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="text-4xl mb-4">☕</div>
+                    <h3 class="text-xl font-bold text-gray-900">Nosso cardápio está sendo preparado</h3>
+                    <p class="text-gray-500 mt-2">Nossos baristas estão atualizando os produtos. Volte em breve!</p>
+                </div>
+            <% } %>
+
+        </div>
+    </main>
+
+    <footer class="bg-rosa-200 text-coffee-100 border-t border-coffee-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="text-xl font-bold text-coffee-900 tracking-tight">Chouchou Cafés</span>
+            </div>
+            <div class="text-sm text-coffee-900 text-center md:text-left">
+                <p class="mt-1">&copy; 2026 Chouchou Cafés. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -22,6 +22,11 @@
                             700: '#6f4334',
                             800: '#5c3528',
                             900: '#4a281d',
+                        },
+                        rosa: {
+                           100: '#fff8ee',
+                           200: '#fad3e0',
+                           300: '#d8a5b6'
                         }
                     }
                 }
@@ -29,22 +34,29 @@
         }
     </script>
 </head>
-<body class="bg-coffee-50 min-h-screen flex items-center justify-center p-4 selection:bg-coffee-200 antialiased">
+<body class="bg-rosa-100 min-h-screen flex items-center justify-center p-4 selection:bg-coffee-200 antialiased">
     
     <div class="max-w-sm w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-coffee-100">
         
-        <div class="bg-coffee-900 p-8 text-center flex flex-col items-center">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-coffee-800 mb-4 shadow-inner">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-coffee-200">
+        <div class="bg-rosa-200 p-8 text-center flex flex-col items-center">
+            <div class="inline-flex items-center justify-center w-30 h-30">
+                <a href="/" class="transition-transform duration-200 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-coffee-500 rounded-md">
+                    <img 
+                        src="/Assets/logo.png" 
+                        alt="Logotipo" 
+                        class="h-16 md:h-20 w-auto object-contain"
+                    >
+                </a>
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-coffee-200">
                     <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
                     <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
                     <line x1="6" x2="6" y1="2" y2="4"/>
                     <line x1="10" x2="10" y1="2" y2="4"/>
                     <line x1="14" x2="14" y1="2" y2="4"/>
-                </svg>
+                </svg> -->
             </div>
-            <h2 class="text-2xl font-bold text-coffee-50 tracking-wide">Expresso Mágico</h2>
-            <p class="text-coffee-300 text-sm mt-1">Acesse sua conta para pedir</p>
+            <!-- <h2 class="text-2xl font-bold text-coffee-900 tracking-wide">Chouchou Cafés</h2> -->
+            <p class="text-coffee-800 text-sm mt-1">Acesse sua conta</p>
         </div>
 
         <div class="p-6 md:p-8">
@@ -54,7 +66,7 @@
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
                     <input type="email" id="email" name="email" required
                         class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-coffee-500 focus:border-coffee-500 outline-none transition-all duration-200 text-gray-800 placeholder-gray-400"
-                        placeholder="barista@exemplo.com">
+                        placeholder="maria@exemplo.com">
                 </div>
 
                 <div>
@@ -68,7 +80,7 @@
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-coffee-800 hover:bg-coffee-900 text-white font-semibold py-2.5 px-4 rounded-lg shadow hover:shadow-md transition-all duration-200 active:scale-[0.98] flex justify-center items-center gap-2 mt-2">
+                    class="w-full bg-rosa-200 hover:bg-rosa-300 text-coffee-900 font-semibold py-2.5 px-4 rounded-lg shadow hover:shadow-md transition-all duration-200 active:scale-[0.98] flex justify-center items-center gap-2 mt-2">
                     <span>Entrar</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
